@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <preference name="DisallowOverscroll" value="true" />
+
+    <title>Osmi</title>
+
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+
+    <!-- Path to main CSS -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- jQuery 3.0.0 -->
+    <script type="text/javascript" src="lib/jquery-3.0.0.min.js"></script>
+
+    <!-- Run page -->
+    <script type="text/javascript" src="js/settings.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Views-->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class-->
+        <div class="view view-main">
+            <!-- Top Navbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="left">
+                        <a href="index.html" onclick="updateForm()" class="back link"> <i class="icon icon-back"></i><span class>Back</span></a>
+                    </div>
+                    <div class="center">Osmi</div>
+                    <div class="right"></div>
+                </div>
+            </div>
+            <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-through toolbar-through">
+                <!-- Index Page-->
+                <div data-page="index" class="page">
+                    <div class="page-content">
+                        <div class="content-block-title">Subject information</div>
+
+
+                        <form id="form-settings" class="list-block store-data">
+                            <ul>
+                                <ul>
+                                    <!-- Smart select item -->
+                                    <li>
+                                        <!-- Additional "smart-select" class -->
+                                        <a href="#" class="item-link smart-select">
+                                            <!-- select -->
+                                            <select name="testtype" id="testtype" onchange="updateForm(this)" value="1">
+                                                <option id="testtype-0" value="0">Constant Stimuli  </option>
+                                                <option id="testtype-1" value="1">Constant Stimuli (randomized)</option>
+                                                <option id="testtype-2" value="2">Staircase </option>
+					        <option id="testtype-3" value="3">Server Assessment</option>
+                                            </select>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <!-- Select label -->
+                                                    <div class="item-title">Test Type</div>
+                                                    <!-- Selected value, not required -->
+                                                    <div class="item-after"></div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                </ul>
+                        </form>
+
+                        <div id="fixed-only">
+                        <form  id="form-settings" class="list-block store-data">
+                          <ul>
+                                <ul>
+                                    <label class="label-checkbox item-content">
+                                        <input name="1" id="1" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">1</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="2" id="2" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">2</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="3" id="3" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">3</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="4" id="4" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">4</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="5" id="5" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">5</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="6" id="6" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">6</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="7" id="7" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">7</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="8" id="8" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">8</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="9" id="9" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">9</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="10" id="10" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">10</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="11" id="11" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">11</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="12" id="12" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">12</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="13" id="13" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">13</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="14" id="14" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">14</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="15" id="15" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title">15</div>
+                                        </div>
+                                    </label>
+                                    <label class="label-checkbox item-content">
+                                        <input name="16" id="16" type="checkbox">
+                                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                                        <div class="item-inner">
+                                          <div class="item-title">16</div>
+                                        </div>
+                                    </label>
+                                </ul>
+				</form></div>
+				
+				<div class="content-block-title">Additional Options</div>
+
+				<form  id="settings-other" class="list-block store-data">
+
+				  <ul>
+				    <!-- Smart select item -->
+				    <li>
+				      <!-- Additional "smart-select" class -->
+				      <a href="#" class="item-link smart-select">
+					<!-- select -->
+					<select id="csv-separator" name="csv-separator">
+					  <option value="comma" selected>Comma</option>
+					  <option value="tabs">Tab</option>
+					</select>
+					<div class="item-content">
+					  <div class="item-inner">
+					    <!-- Select label -->
+					    <div class="item-title">CSV Separator</div>
+					    <!-- Selected value, not required -->
+					    <div class="item-after">Comma</div>
+					  </div>
+					</div>
+				      </a>
+				    </li>
+				    <!-- Another smart selects or list view elements -->
+				  </ul>
+				</form>
+
+                        </div>
+                    <!--</div>-->
+                    <script type="text/javascript" src="js/settings.js"></script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/settings.js"></script>
+
+    <!-- Initialize Framework7 JS -->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/framework7_init.js"></script>
+
+
+
+</body>
+
+</html>

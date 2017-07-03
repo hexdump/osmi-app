@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <script type="text/javascript" src="js/display-settings.js"></script>
+
+    <preference name="DisallowOverscroll" value="true" />
+
+    <title>Osmi</title>
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+
+  </head>
+  <body>
+    
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left"></div>
+            <div class="center">Osmi</div>
+            <div class="right"></div>
+          </div>
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through toolbar-through">
+          <!-- Index Page-->
+          <div data-page="index" class="page">
+            <div class="page-content">
+              <div class="content-block-title">WELCOME TO OSMI</div>
+              <div class="content-block">
+                <div class="content-block-inner">
+                  <p id="settings">You don't have any test set up yet! Go to Settings and set one.</p>
+                </div>
+              </div>
+              <div class="list-block">
+                <ul>
+                  <li><a href="newtest.html" class="item-link item-content">
+                      <div class="item-inner">
+                        <div class="item-title">New test</div>
+                  </div></a></li>
+                  <li><a href="results.html" class="item-link item-content">
+                      <div class="item-inner">
+                        <div class="item-title">View results</div>
+                  </div></a></li>
+                  <li><a href="settings.html" class="item-link item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Settings</div>
+                  </div></a></li>
+                  <li><a href="help.html" class="item-link item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Help</div>
+                  </div></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      updateSettingsInfo()
+    </script>
+    
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="lib/fileSaver.min.js"></script>
+    <script type="text/javascript" src="js/assessments.js"></script>
+    <script type="text/javascript" src="js/controller.js"></script>
+    <script type="text/javascript" src="js/results.js"></script>
+    <script type="text/javascript" src="js/newTest.js"></script>
+    <script type="text/javascript" src="js/settings.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Initialize Framework7 JS -->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/framework7_init.js"></script>
+  </body>
+</html>

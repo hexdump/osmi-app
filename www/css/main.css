@@ -1,0 +1,21 @@
+/*make buttons have side margins*/
+.button, .buttonSubText, .progressbar {
+  margin-left: 7%;
+  margin-right: 7%;
+  width: 86%;
+}
+
+/*allow for greyed-out placeholder in <select> elements*/
+select:required:invalid {
+    color:#aeaeae;
+}
+option[value=""][disabled] {
+    display: none;
+}
+option {
+  color: black;
+}
+
+.fixed-only {
+  display: none;
+}

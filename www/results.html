@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <preference name="DisallowOverscroll" value="true" />
+
+    <title>Osmi</title>
+
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.min.css">
+
+    <!-- Path to main CSS -->
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- jQuery 3.0.0 -->
+    <script type="text/javascript" src="lib/jquery-3.0.0.min.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Views-->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class-->
+        <div class="view view-main">
+            <!-- Top Navbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="left">
+                        <a href="index.html" onclick="setMode()" class="back link"> <i class="icon icon-back"></i><span class>Back</span></a>
+                    </div>
+                    <div class="center">Osmi</div>
+                    <div class="right"></div>
+                </div>
+            </div>
+            <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-through toolbar-through">
+                <!-- Index Page-->
+                <div data-page="index" class="page">
+                    <div class="page-content">
+
+                       <!--  saveAs(new File([makecsv()], 'results.csv', {type: 'text/plain;charset=utf-8'})); -->
+                        <!-- export data -->
+                        <p><a href="#" onclick="downloadData('results.csv', makecsv())" class="button button-big">Export data to CSV</a></p>
+
+                        <p><a href="#" class="buttonSubText" onclick="clearResults()">Clear data</a></p>
+
+
+                        <div id="results-list" class="list-block accordion-list">
+                            <ul id="accordion-list">
+                            </ul>
+                            <!-- JS for managing data cards -->
+                            <script type="text/javascript" src="js/results.js"></script>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/results.js"></script>
+    
+    <!-- Initialize Framework7 JS -->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/framework7_init.js"></script>
+
+    <script type="text/javascript" src="cordova.js"></script>
+
+</body>
+
+</html>
