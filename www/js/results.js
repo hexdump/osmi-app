@@ -40,8 +40,7 @@ function downloadData(filename, text) {
 function makecsv() {
     // return results as CSV
     results = JSON.parse(window.localStorage.getItem("data"));
-
-    if (localStorage.getItem("use-tabs")) {
+    if (localStorage.getItem("use-tabs") == "true") {
 	separator = "\t";
     }
     else {
