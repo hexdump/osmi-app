@@ -1,6 +1,6 @@
-====
-OSMI
-====
+======
+ Osmi
+======
 
 An application for administering olfactory sensitivity tests.
 
@@ -21,45 +21,52 @@ Building
 MacOS
 -----
 
-First, you'll want to install the :code:`homebrew` package manager:
+First, clone the repository through the following command:
 
 .. code::
+
+	git clone https://github.com/osmi-app/osmi-app.git
+
+
+First, you'll want to install the :code:`homebrew` package manager:
+
+.. code:: bash 
 
    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 Then, use :code:`homebrew` to install :code:`node`
 
-.. code::
+.. code:: bash
    
    brew install node
 
 And use the newly installed Node Package Manager, :code:`npm`, to install cordova, like so
 
-.. code::
+.. code:: bash
 
    npm install -g cordova
 
 Once you've installed cordova, you'll want to install the desired platform for the Cordova app. Within the :code:`osmi` directory, to add the iOS platform, run
 
-.. code::
+.. code:: bash
 
    cordova platform add ios
 
 and for Android
 
-.. code::
+.. code:: bash
 
    cordova platform add android
 
 Then, to run it on either platform, assuming that you have the appropriate SDK installed, run either
 
-.. code::
+.. code:: bash
 
    cordova run ios
 
 or
 
-.. code::
+.. code:: bash
 
    cordova run android
 
