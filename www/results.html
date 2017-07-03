@@ -51,7 +51,7 @@
 
                        <!--  saveAs(new File([makecsv()], 'results.csv', {type: 'text/plain;charset=utf-8'})); -->
                         <!-- export data -->
-                        <p><a href="#" onclick="downloadData('results.csv', makecsv())" class="button button-big">Export data to CSV</a></p>
+                        <p><a href="#" onclick="downloadData(new Date().toISOString() + '-results.csv', makecsv())" class="button button-big">Export data to CSV</a></p>
 
                         <p><a href="#" class="buttonSubText" onclick="clearResults()">Clear data</a></p>
 
