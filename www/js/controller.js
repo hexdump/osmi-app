@@ -67,7 +67,7 @@ function returnToMainPage() {
 }
 
 function end() {
-    // format page for reslits
+    // format page for results
     document.getElementById("container").innerHTML = "<br><center>Score<h1>" + test.score + "</h1></center>"
 
     // remove undo button
@@ -78,7 +78,7 @@ function end() {
 
     var testType    = ["Constant Stimuli", "Staircase", "Server"][testOptions.type];
 
-    result = {id:subjectInfo.id, testType: testType, score:test.score, gender: subjectInfo.gender, age: subjectInfo.gender, record:test.record.join(" ")};
+    result = {id:subjectInfo.id, testType: testType, score:test.score, gender: subjectInfo.gender, age: subjectInfo.age, record:test.record.join(" ")};
     if (window.localStorage.getItem("data") != null) {
     	data = JSON.parse(window.localStorage.getItem("data"));
     	data.push(result);
