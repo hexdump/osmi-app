@@ -1,8 +1,5 @@
-
 # Cordova files
 platforms
 plugins
 node_modules
-package-lock.json
-package.json
 .DS_Store
