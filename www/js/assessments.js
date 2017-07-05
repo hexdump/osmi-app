@@ -165,7 +165,8 @@ function stepAssessment(Assessment) {
 		}
 		
 		if (this.reversals.length === 7) {
-			this.score = mean(this.reversals);
+			// score is the mean of the last 4 reversals
+			this.score = mean(this.reversals.splice(3, 7));
 			this.isDone = true;
 		}
 	}

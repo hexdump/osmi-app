@@ -12,6 +12,14 @@ case 2:
     break;
 }
 
+
+var showMarkerIndices;
+if (localStorage.getItem("dont-show-marker-indices") == "true") {
+	showMarkerIndices = false;
+} else {
+	showMarkerIndices = true;
+}
+
 function shadeOtherPens() {
     pensToShade = document.getElementsByClassName("notSelected");
     for (var i = 0; i < pensToShade.length; i++) {
@@ -22,8 +30,8 @@ function shadeOtherPens() {
 }
 
 var pens = ['<img id="green" class="notSelected" src="img/green.png" width="20%" hspace="1%" onclick="this.class=\'selected\'; shadeOtherPens(); setTimeout(function(){ update(\'green\');},300); this.class=\'notSelected\';" />',
-            '<img id="blue"  class="notSelected" src="img/red.png"   width="20%" hspace="1%" onclick="this.class=\'selected\'; shadeOtherPens(); setTimeout(function(){ update(\'red\');  },300); this.class=\'notSelected\';" />',
-            '<img id="red"   class="notSelected" src="img/blue.png"  width="20%" hspace="1%" onclick="this.class=\'selected\'; shadeOtherPens(); setTimeout(function(){ update(\'blue\'); },300); this.class=\'notSelected\';" />'];
+            '<img id="blue"  class="notSelected" src="img/blue.png"   width="20%" hspace="1%" onclick="this.class=\'selected\'; shadeOtherPens(); setTimeout(function(){ update(\'red\');  },300); this.class=\'notSelected\';" />',
+            '<img id="red"   class="notSelected" src="img/red.png"  width="20%" hspace="1%" onclick="this.class=\'selected\'; shadeOtherPens(); setTimeout(function(){ update(\'blue\'); },300); this.class=\'notSelected\';" />'];
 
 var markers;
 
@@ -40,11 +48,20 @@ function avg(arr) {
 function presentPens() {
     document.getElementById("markerNumber").innerHTML = String(test.currentNumber);
     shuffledPens = shuffle(pens);
+	console.log(shuffledPens);
     markers = [];
     for (var i = 0; i < 3; i++) {
-	markers[i] = shuffledPens[i].split("id=")[1].split(" class")[0].replace('"','').replace('"','').replaceAll(" ","");
+		markers[i] = shuffledPens[i].split("id=")[1].split(" class")[0].replace('"','').replace('"','').replaceAll(" ","");
+		if (showMarkerIndices) {
+			var color = shuffledPens[i].match(/red|green|blue/)[0];
+			console.log(color)
+			shuffledPens[i] = shuffledPens[i].replace(/src="img\/(red|green|blue).*?"/, 'src="img/' + color + '_' + (i + 1) + '.png"')
+			//shuffledPens[i] = shuffledPens[i].replace(".png", "_" + (i + 1) + ".png")
+		}
     }
-    document.getElementById("markerView").innerHTML   = shuffledPens.join("");
+	
+	console.log(shuffledPens)
+    document.getElementById("markerView").innerHTML = shuffledPens.join("");
 }
 
 function back() {
