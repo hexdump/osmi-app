@@ -19,6 +19,16 @@ function shuffle(array) {
     return array;
 }
 
+function mean(array) {
+	// return the mean of an array
+	var sum = 0;
+	for (var i = 0; i < array.length; i++) {
+		sum += array[i];
+	}
+	
+	return sum / array.length;
+}
+
 // for stepassessment
 function removeElement(arr, arrayElement) {
     temp = arr;
@@ -40,10 +50,15 @@ function decPlusOne(s) {
 }
 
 function Assessment() {
-    this.record = [];
-    this.currentNumber = 0; // 15 or 16 (random)
+//    this.record = [];
+    this.currentNumber = 0; // dilution factor
     this.score = 0;
     this.isDone = false;
+
+	this.update = function(color, makers) {
+		this.record.push(hexMinusOne(doses[this.currentNumber]) + markers.indexOf("red") + markers.indexOf(color) + Date.now())
+		this._update(color === "red", record)
+	}
 
     this.makeRecordElement = function() {}
     this.parseRecordElement = function() {}
@@ -76,6 +91,17 @@ function fixedDoseAssessment(doses, rand) {
     }
 
     this.update = function(color, markers) {
+		
+		if (this.index === -1) {
+			this.isDone = true;
+		}
+		
+		else {
+			this.currentNumber = doses[this.index];
+			this.record.push(hexMinusOne(currentNumber) + markers)
+		}
+
+		
         this.record.push(hexMinusOne(doses[this.index]) + markers.indexOf("red") + markers.indexOf(color) + Date.now());
 	if (markers.indexOf(color) === markers.indexOf("red")) {
 	    this.score += 1;
@@ -85,25 +111,73 @@ function fixedDoseAssessment(doses, rand) {
         this.index -= 1;
         this.currentNumber = doses[this.index];
 
-        if (this.index === -1) {
-            this.isDone = true;
-        }
 
     }
 }
 
 fixedDoseAssessment.prototype = new Assessment;
 
-function stepAssessment(type) {
-    this.currentNumber = 15 + Math.round(Math.random()); // 15 or 16 (random)
-    this.lastNumber    = this.currentNumber;
-    this.record        = [hexMinusOne(this.currentNumber)]; // list of tuples (number, colour, is reversal)
-    this.stepSize      = 2;
-    this.direction     = -1; // last direction
-    this.lastCorrect   = false;
-    this.reversals     = [];
-    this.last16s       = 0;
-    this.last1s        = 0;
+function stepAssessment(Assessment) {
+	this.currentNumber = 15 + Math.round(Math.random()); // 15 or 16
+	this.last_dilution = null;
+	//this.lastCorrect = false;
+	this.stepsize = -2;
+	this.reversals = [];
+	this.record = [];
+	this.score = 0;
+	
+	this.update = function(color, markers) {
+		
+	this.record.push(hexMinusOne(this.currentNumber) + markers.indexOf("red") + markers.indexOf(color) + Date.now())
+		
+	    if (color == "red") { 
+	        if (this.currentNumber === this.last_dilution) {
+				if (this.stepsize < 0) {
+					this.reversals.push(this.currentNumber)
+					this.stepsize = 1
+				}
+				this.currentNumber += this.stepsize
+			}
+            		
+				        else {
+				            this.last_dilution = this.currentNumber
+			}
+    	}
+	
+	    else {
+	        if (this.stepsize > 0) {
+	            this.reversals.push(this.currentNumber)
+	            this.stepsize = -1
+			}
+			
+			this.lastCorrect = false;
+			
+	        this.last_dilution = this.currentNumber
+	        this.currentNumber += this.stepsize
+		}
+		
+	    if (this.currentNumber < 1) {
+	        this.currentNumber = 1
+		}
+		
+	    else if (this.currentNumber > 16) {
+	        this.currentNumber = 16
+		}
+		
+		if (this.reversals.length === 7) {
+			this.score = mean(this.reversals);
+			this.isDone = true;
+		}
+	}
+
+	// def done():
+	//     if length(reversals) = 7 or mean(last5) in [1,16]:
+	//         return True
+	// def score():
+	//     if length(reversals) = 7:
+	//         return mean(reversals[0:4])
+	//     else:
+	//         return mean(last5)
 
     this.back = function() {
         this.currentNumber = decPlusOne(this.record[this.record.length - 1][0]);
@@ -130,68 +204,68 @@ function stepAssessment(type) {
 	return (removeElement(this.reversals,0).length * 100 / 7).toFixed();
     }
 
-    this.update = function(color, markers) {
-        // record direction
-        lastDirection = this.direction;
-
-        // record choice
-        this.record.push(hexMinusOne(this.currentNumber) + markers.indexOf("red") + markers.indexOf(color) + Date.now());
-
-        // end state
-        if (this.reversals.length == 7) {
-            return -1;
-        }
-
-        //  If you get 5 16's in a row, return a score of 16
-        if (this.currentNumber === 16 && color === "red") {
-            this.last16s += 1;
-            if (this.last16s === 5){
-                myApp.alert("5 16's exceeded. Perfect score.", "Osmi");
-                this.isDone = true;
-                return;
-            }
-        }
-
-        // If you get 7 1's in a row, return a message that the test's most likely bad
-        else if (this.currentNumber === 1 && color != "red") {
-            this.last1s += 1;
-            if (this.last1s === 7){
-                myApp.alert("7 1's exceeded. Test most likely bad", "Osmi");
-                this.score = "NA";
-                this.isDone = true;
-                return;
-            }
-        }
-        
-        // step 2
-        else if (color === "red") {
-            if (this.lastCorrect) {
-                this.lastCorrect = false;
-                this.direction = 1;
-                this.currentNumber += 1;
-            } else {
-                this.lastCorrect = true;
-            }
-        } else {
-            this.direction = -1;
-            // put a bottom limit on the marker number
-            this.currentNumber = this.stepSize === this.currentNumber ? 1 : this.currentNumber - this.stepSize;
-        }
-
-        // if there's a direction change, it's a reversal
-        if (lastDirection != this.direction) {
-	    this.reversals.push(this.currentNumber);
-        } else {
-	    this.reversals.push(0);
-	}
-
-        if (removeElement(this.reversals,0).length == 7) {
-            this.score = avg(removeElement(this.reversals,0)).toFixed(3);
-            this.isDone = true;
-        }
-
-        this.lastNumber = this.currentNumber;
-    }
+		//     this.update = function(color, markers) {
+		//         // record direction
+		//         lastDirection = this.direction;
+		//
+		//         // record choice
+		//         this.record.push(hexMinusOne(this.currentNumber) + markers.indexOf("red") + markers.indexOf(color) + Date.now());
+		//
+		//         // end state
+		//         if (this.reversals.length == 7) {
+		//             return -1;
+		//         }
+		//
+		//         //  If you get 5 16's in a row, return a score of 16
+		//         if (this.currentNumber === 16 && color === "red") {
+		//             this.last16s += 1;
+		//             if (this.last16s === 5){
+		//                 myApp.alert("5 16's exceeded. Perfect score.", "Osmi");
+		//                 this.isDone = true;
+		//                 return;
+		//             }
+		//         }
+		//
+		//         // If you get 7 1's in a row, return a message that the test's most likely bad
+		//         else if (this.currentNumber === 1 && color != "red") {
+		//             this.last1s += 1;
+		//             if (this.last1s === 7){
+		//                 myApp.alert("7 1's exceeded. Test most likely bad", "Osmi");
+		//                 this.score = "NA";
+		//                 this.isDone = true;
+		//                 return;
+		//             }
+		//         }
+		//
+		//         // step 2
+		//         else if (color === "red") {
+		//             if (this.lastCorrect) {
+		//                 this.lastCorrect = false;
+		//                 this.direction = 1;
+		//                 this.currentNumber += 1;
+		//             } else {
+		//                 this.lastCorrect = true;
+		//             }
+		//         } else {
+		//             this.direction = -1;
+		//             // put a bottom limit on the marker number
+		//             this.currentNumber = this.stepSize === this.currentNumber ? 1 : this.currentNumber - this.stepSize;
+		//         }
+		//
+		//         // if there's a direction change, it's a reversal
+		//         if (lastDirection != this.direction) {
+		// 	this.reversals.push(this.currentNumber);
+		//         } else {
+		// 	    	this.reversals.push(0);
+		// }
+		//
+		//         if (removeElement(this.reversals,0).length == 7) {
+		//             this.score = avg(removeElement(this.reversals,0)).toFixed(3);
+		//             this.isDone = true;
+		//         }
+		//
+		//         this.lastNumber = this.currentNumber;
+		//     }
 }
 
 fixedDoseAssessment.prototype = new Assessment;

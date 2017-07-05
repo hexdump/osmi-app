@@ -68,7 +68,7 @@ function returnToMainPage() {
 
 function end() {
     // format page for results
-    document.getElementById("container").innerHTML = "<br><center>Score<h1>" + test.score + "</h1></center>"
+    document.getElementById("container").innerHTML = "<br><center>Score<h1>" + Math.round(test.score * 10) / 10 + "</h1></center>"
 
     // remove undo button
     document.getElementById("backButton").parentElement.removeChild(document.getElementById("backButton"));
