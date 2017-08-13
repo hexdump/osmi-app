@@ -35,6 +35,14 @@ var pens = ['<img id="green" class="notSelected" src="img/green.png" width="20%"
 
 var markers;
 
+var allMarkers = ["img/red.png", "img/green.png", "img/blue.png", "img/red_1.png", "img/green_1.png", "img/blue_1.png", "img/red_2.png", "img/green_2.png", "img/blue_2.png", "img/red_3.png", "img/green_3.png", "img/blue_3.png"];
+
+for (i = 0; i < allMarkers.length; i++) {
+    var image = new Image();
+    image.src = allMarkers[i];
+}
+
+
 // infinitely useful
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
@@ -54,9 +62,7 @@ function presentPens() {
 		markers[i] = shuffledPens[i].split("id=")[1].split(" class")[0].replace('"','').replace('"','').replaceAll(" ","");
 		if (showMarkerIndices) {
 			var color = shuffledPens[i].match(/red|green|blue/)[0];
-			console.log(color)
 			shuffledPens[i] = shuffledPens[i].replace(/src="img\/(red|green|blue).*?"/, 'src="img/' + color + '_' + (i + 1) + '.png"')
-			//shuffledPens[i] = shuffledPens[i].replace(".png", "_" + (i + 1) + ".png")
 		}
     }
 	

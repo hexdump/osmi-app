@@ -92,13 +92,13 @@ function fixedDoseAssessment(doses, rand) {
 
     this.update = function(color, markers) {
 		
-		if (this.index === -1) {
+		if (this.index === 0) {
 			this.isDone = true;
 		}
 		
 		else {
 			this.currentNumber = doses[this.index];
-			this.record.push(hexMinusOne(currentNumber) + markers)
+			this.record.push(hexMinusOne(this.currentNumber) + markers)
 		}
 
 		
@@ -106,7 +106,7 @@ function fixedDoseAssessment(doses, rand) {
 	if (markers.indexOf(color) === markers.indexOf("red")) {
 	    this.score += 1;
 	}
-
+	
 	this._progress += 100 / doses.length;
         this.index -= 1;
         this.currentNumber = doses[this.index];

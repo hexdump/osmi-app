@@ -47,14 +47,12 @@ function setMode() {
     if (document.getElementById("csv-separator").value === "tabs") {
 		localStorage.setItem("use-tabs", true);
     }
-	
-	if (document.getElementById("dont-show-marker-indices")) {
-		localStorage.setItem("dont-show-marker-indices", true);
-	}
-
     else {
 	localStorage.setItem("use-tabs", false);
     }
+    
+    localStorage.setItem("dont-show-marker-indices", document.getElementById("dont-show-marker-indices").checked);
+
 }
 
 mode = 0;
