@@ -75,5 +75,18 @@ function updateForm() {
     }
     setMode();
     updateSettingsInfo();
+
+
+    return false;
 }
-// update doses
+
+function leaveSettings() {
+        test = JSON.parse(localStorage.getItem('test'))
+    
+    if (test && test.type < 2 && test.doses.length === 0) {
+	alert('No doses selected!')
+    }
+    else {
+	mainView.back()
+    }
+}
